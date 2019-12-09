@@ -1,0 +1,50 @@
+<h3>Cart</h3>
+<!--<select [(ngModel)]="myDropDown" (ngModelChange)="onChangeofOptions($event)">
+    <option value=shipping.price>shipping.type</option>
+    <option value="two">Two</option>
+    <option value="three">Three</option>
+</select>
+<input [hidden]="myDropDown !=='two'"type="text">-->
+
+<select ng-options="item as item.price for item in shipping track by item.type" ng-model="selected"></select>
+
+<!--<form>
+<mat-form-field>
+  <mat-label>Favorite food</mat-label>
+  <mat-select>
+    <mat-option *ngFor="let food of foods" [value]="shipping.type">
+      {{shipping.price}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+</form>-->
+
+<p>
+  <a routerLink="/shipping">Shipping Prices</a>
+</p>
+
+
+
+<div class="cart-item" *ngFor="let item of items">
+  <span>{{ item.name }}</span>
+  <span>{{ item.price | currency }}</span>
+</div>
+<form [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)">
+
+  <div>
+    <label for="name">
+      Name
+    </label>
+    <input id="name" type="text" formControlName="name">
+  </div>
+
+  <div>
+    <label for="address">
+      Address
+    </label>
+    <input id="address" type="text" formControlName="address">
+  </div>
+
+  <button class="button" type="submit">Purchase</button>
+
+</form>
